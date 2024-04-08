@@ -1,0 +1,11 @@
+{
+   "web": {
+      "baseUrl": "qa.digift.ru/"
+   },
+   "login_info": {
+      "username": "HR",
+      "password": "test"
+   }
+
+
+}
