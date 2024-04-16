@@ -14,7 +14,7 @@ class Card_Noms:
     def click_on_card_noms(self, index):
         wd = self.app.wd
         wd.find_element_by_xpath("//li[%s]/button" %index).click()
-        time.sleep(2)
+        #time.sleep(2)
 
 
     def get_button_value(self, index):
