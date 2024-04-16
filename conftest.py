@@ -1,4 +1,5 @@
 import pytest
+import requests
 from fixture.application import Application
 import json
 import os.path
@@ -32,6 +33,9 @@ def app(request, config):
 
     return fixture
 
+@pytest.fixture
+def api_client():
+    return requests.Session()
 
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
@@ -39,6 +43,7 @@ def stop(request):
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
+
 
 
 def pytest_addoption(parser):
