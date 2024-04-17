@@ -1,3 +1,4 @@
+import re
 import time
 from Model.JsTestTask import JsTestTask
 
@@ -67,10 +68,11 @@ class apiHelper:
     def compare_product_names(self, products):
         #сравнение полученного списка с требуемым параметром
         for product in products:
-            if "Alcatel" in product.name:
-                return True
-            else:
+            match=re.search('Alcatel', product.name)
+            #print(str(match)+"Yes" if match else str(match)+" No")
+            if not match:
                 return False
+        return True
 
 
 
