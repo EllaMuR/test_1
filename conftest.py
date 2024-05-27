@@ -4,10 +4,9 @@ from fixture.application import Application
 import json
 import os.path
 
-
-
 fixture = None
 target = None
+
 
 def load_config(file):
     global target
@@ -28,22 +27,15 @@ def app(request, config):
     global fixture
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid() :
-        fixture = Application(browser=browser, config=config) #, username=web_config["username"], password=web_config["password"]
+        fixture = Application(browser=browser, config=config)
         fixture.session.login(username=config["login_info"]["username"], password=config["login_info"]["password"])
+    yield fixture
+    fixture.destroy()
 
-    return fixture
 
 @pytest.fixture
 def api_client():
-    return requests.Session()
-
-@pytest.fixture(scope="session", autouse=True)
-def stop(request):
-    def fin():
-        fixture.destroy()
-    request.addfinalizer(fin)
-    return fixture
-
+    yield requests.Session()
 
 
 def pytest_addoption(parser):

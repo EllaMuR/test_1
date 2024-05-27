@@ -5,10 +5,5 @@
    "login_info": {
       "username": "HR",
       "password": "test"
-   },
-   "api": {
-      "baseUrl": "https://www.lenvendo.ru/"
    }
-
-
 }
